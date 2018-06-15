@@ -1,8 +1,12 @@
 package com.southernslights.androidanimations;
 
+import android.animation.Animator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,9 +15,10 @@ public class Main2Activity extends AppCompatActivity {
 
     Button myButton;
     Button myButtonUp;
-    View myView;
     TextView textView1;
     TextView textView2;
+    View mLineView;
+    Button mStretchButton;
     boolean isUp;
 
     @Override
@@ -21,7 +26,6 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        myView = findViewById(R.id.my_view);
         myButton = findViewById(R.id.my_button);
         myButtonUp = findViewById(R.id.my_button2);
 
@@ -29,8 +33,10 @@ public class Main2Activity extends AppCompatActivity {
         textView2 = findViewById(R.id.text2);
 
         // initialize as invisible (could also do in xml)
-        myView.setVisibility(View.INVISIBLE);
         myButton.setText("Slide up");
+
+        mLineView = findViewById(R.id.line);
+        mStretchButton = findViewById(R.id.stretch);
 
         isUp = false;
     }
@@ -99,6 +105,60 @@ public class Main2Activity extends AppCompatActivity {
         slideUpPlus(textView2, 1);
         myButton.setText("Slide up");
     }
+
+    public void onStretchProgrammatically(View view) {
+
+//        Animation a = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+//        mLineView.startAnimation(a);
+
+//    public ScaleAnimation(float fromX, float toX, float fromY, float toY,
+//        int pivotXType, float pivotXValue, int pivotYType, float pivotYValue) {
+
+            Animation animation = new ScaleAnimation(0, 1, 1, 1,
+                    Animation.RELATIVE_TO_SELF, (float) 0.5, Animation.RELATIVE_TO_SELF, 1);
+            animation.setFillAfter(true);
+            animation.setDuration(200);
+            mLineView.startAnimation(animation);
+//        TranslateAnimation animate = new TranslateAnimation(
+//                0,                 // fromXDelta
+//                0,                 // toXDelta
+//                0,  // fromYDelta
+//                -view.getHeight());                // toYDelta
+//        animate.setDuration(500);
+//        animate.setFillAfter(true);
+//        view.startAnimation(animate);
+//        view.animate().setDuration(500).alpha(toAlpha);
+
+
+    }
+
+
+    public void onCompress(View view) {
+
+//        Animation a = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+//        mLineView.startAnimation(a);
+
+//    public ScaleAnimation(float fromX, float toX, float fromY, float toY,
+//        int pivotXType, float pivotXValue, int pivotYType, float pivotYValue) {
+
+        Animation animation = new ScaleAnimation(1, 0, 1, 1,
+                Animation.RELATIVE_TO_SELF, (float) 0.5, Animation.RELATIVE_TO_SELF, 1);
+        animation.setFillAfter(true);
+        animation.setDuration(200);
+        mLineView.startAnimation(animation);
+//        TranslateAnimation animate = new TranslateAnimation(
+//                0,                 // fromXDelta
+//                0,                 // toXDelta
+//                0,  // fromYDelta
+//                -view.getHeight());                // toYDelta
+//        animate.setDuration(500);
+//        animate.setFillAfter(true);
+//        view.startAnimation(animate);
+//        view.animate().setDuration(500).alpha(toAlpha);
+
+
+    }
+
 
 
 }
